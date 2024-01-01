@@ -19,7 +19,7 @@ const WeatherCard = ({ weather }) => {
 
         </section>
         <footer>
-            <h2>Temperture</h2>
+            <h2>Tempertura</h2>
             <li><span>Temperature</span><span> {weather?.main.temp} kelvin</span></li>
             <button>Change Temperture</button>
         </footer>
