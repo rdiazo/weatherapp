@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import axios from 'axios'
 import WeatherCard from './components/WeatherCard'
-WeatherCard 
 
 function App() {
 
   const [coords, setCoords] = useState()
   const [weather, setWeather] = useState()
+  const [temp, setTemp] = useState()
 
   const success = pos => {
     const obj = {
@@ -18,6 +18,10 @@ function App() {
   }
 
   useEffect(() => {
+    navigator.geolocation.getCurrentPosition(success)
+  }, [])
+
+  useEffect(() => {
     if (coords) {
 
       const API_key = '6253cd5a26bbeb85390670de0c9e7164'
@@ -26,21 +30,29 @@ function App() {
       const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_key}`
 
       axios.get(url)
-        .then(res => setWeather(res.data))
+        .then(res => {
+          setWeather(res.data)
+
+          const obj = {
+            celsius: (res.data.main.temp - 273.15).toFixed(2),
+            fahrenheit: ((res.data.main.temp - 273.15) * 9 / 5 + 32).toFixed(2)
+          }
+
+          setTemp(obj)
+        })
         .catch(err => console.log(err))
     }
   }, [coords])
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(success)
-  }, [])
-
-  console.log(weather)
+  //console.log(weather)
 
   return (
-
-      <WeatherCard weather={weather} />
-
+    <div>
+      <WeatherCard
+        weather={weather}
+        temp={temp}
+      />
+    </div >
   )
 }
 
