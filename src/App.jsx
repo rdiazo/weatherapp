@@ -8,6 +8,7 @@ function App() {
   const [coords, setCoords] = useState()
   const [weather, setWeather] = useState()
   const [temp, setTemp] = useState()
+  const [isLoading, setIsLoading] = useState(true)
 
   const success = pos => {
     const obj = {
@@ -18,7 +19,9 @@ function App() {
   }
 
   useEffect(() => {
+    setIsLoading(true)
     navigator.geolocation.getCurrentPosition(success)
+    
   }, [])
 
   useEffect(() => {
@@ -41,17 +44,25 @@ function App() {
           setTemp(obj)
         })
         .catch(err => console.log(err))
+        .finally(() => setIsLoading(false))
     }
   }, [coords])
 
-  //console.log(weather)
-
   return (
-    <div>
-      <WeatherCard
-        weather={weather}
-        temp={temp}
-      />
+    <div className='app'>
+
+      {
+        isLoading
+          ? <h2 className='weather__loading'>
+            Loading. . .
+          </h2>
+          : (
+            <WeatherCard
+              weather={weather}
+              temp={temp}
+            />
+          )
+      }
     </div >
   )
 }
