@@ -8,13 +8,14 @@
 }
 
 .weather__title {
-    font-size: 1.6rem;
+    font-family: 'Seymour One', sans-serif;
+    font-size: 1.8rem;
     text-align: center;
     font-weight: 500;
 }
 
 .weather__subtitle {
-    font-size: 1rem;
+    font-size: 1.4rem;
     text-align: center;
     font-weight: 500;
     margin-bottom: 1em;
@@ -33,6 +34,7 @@
     text-align: center;
     text-transform: capitalize;
     margin-bottom: 0.8em;
+    font-weight: bold;
 }
 
 .weather__list {
@@ -63,8 +65,9 @@
 
 .weather__temp {
     text-align: center;
-    font-size: 1.4rem;
-    font-weight: 500;
+    font-size: 1.8rem;
+    font-weight: 400;
+    font-weight: bold;
 }
 
 .weather__btn {
@@ -73,7 +76,7 @@
     border-radius: 1em;
     background-color: rgb(71, 0, 71);
     color: antiquewhite;
-    font-size: 0.8rem;
+    font-size: 1.1rem;
     transition: transform 100ms ease;
 }
 
@@ -87,12 +90,13 @@
     min-height: 8vh;
 
     font-size: 50px;
-    background: linear-gradient(violet, blue, red);
+    background: linear-gradient(rgb(4, 204, 38), rgb(184, 2, 2),  rgb(240, 240, 7));
     color: transparent;
     background-clip: text;
     -webkit-background-clip: text;
     -moz-background-clip: text;
     animation: text 3s linear infinite;
+    font-family: 'Bungee Spice', sans-serif;
 }
 
 @keyframes text {
